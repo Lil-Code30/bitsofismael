@@ -129,7 +129,7 @@ const components = {
 // 🧠 CustomMDX wrapper
 interface CustomMDXProps {
   source: MDXRemoteSerializeResult;
-  components?: Record<string, React.ComponentType<any>>;
+  components?: Record<string, React.ComponentType<"">>;
 }
 
 export function CustomMDX({

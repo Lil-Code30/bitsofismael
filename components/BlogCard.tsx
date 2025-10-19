@@ -5,14 +5,11 @@ interface BlogCardProps {
   title: string;
   createdDate: string;
   updatedDate?: string | null;
+  tag?: string;
+  description?: string;
 }
 
-export function BlogCard({
-  id,
-  title,
-  createdDate,
-  updatedDate,
-}: BlogCardProps) {
+export function BlogCard({ id, title, createdDate }: BlogCardProps) {
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -22,31 +19,21 @@ export function BlogCard({
   };
 
   return (
-    <Link href={`/logs/${id}`} className="block">
-      <div className="border rounded-lg p-4 hover:shadow-md transition-shadow bg-white">
-        <div className="flex items-start justify-between mb-2">
-          <h3 className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
-            {title}
-          </h3>
-          <span className="text-sm font-mono text-gray-500 bg-gray-100 px-2 py-1 rounded">
-            #{id}
-          </span>
+    <Link href={`/logs/${id}`} className="block group">
+      <article className="flex items-center gap-5">
+        <div className="flex items-center gap-3 mb-2 font-bold">
+          <div className="text-md text-gray-500 font-mono">#{id}</div>
+          <time
+            dateTime={createdDate}
+            className="text-sm text-gray-400 tracking-wide"
+          >
+            {formatDate(createdDate)}
+          </time>
         </div>
-
-        <div className="text-sm text-gray-600 space-y-1">
-          <div className="flex items-center gap-2">
-            <span className="text-gray-500">Created:</span>
-            <time dateTime={createdDate}>{formatDate(createdDate)}</time>
-          </div>
-
-          {updatedDate && updatedDate !== createdDate && (
-            <div className="flex items-center gap-2">
-              <span className="text-gray-500">Updated:</span>
-              <time dateTime={updatedDate}>{formatDate(updatedDate)}</time>
-            </div>
-          )}
-        </div>
-      </div>
+        <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors mb-2">
+          {title}
+        </h3>
+      </article>
     </Link>
   );
 }

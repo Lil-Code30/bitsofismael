@@ -8,58 +8,14 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import { Figure } from "@/components/Figure";
 import { YouTubeCard } from "@/components/YoutubeCard";
-import CodeBlock from "@/components/CodeBlock";
 import React from "react";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "logs");
-
-// Define interfaces for better type safety
-interface CodeElementProps {
-  className?: string;
-  children: string;
-}
-
-interface CodeElement extends React.ReactElement {
-  props: CodeElementProps;
-}
 
 // Components available to MDX
 const components = {
   Figure,
   YouTube: YouTubeCard,
-  pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
-    // Check if this is a code block with React element structure
-    const codeElement = children as CodeElement;
-    if (
-      codeElement &&
-      typeof codeElement === "object" &&
-      codeElement.props &&
-      codeElement.props.className
-    ) {
-      return (
-        <CodeBlock className={codeElement.props.className}>
-          {codeElement.props.children}
-        </CodeBlock>
-      );
-    }
-    return <pre {...props}>{children}</pre>;
-  },
-  code: ({
-    className,
-    children,
-    ...props
-  }: React.HTMLAttributes<HTMLElement> & { className?: string }) => {
-    // For inline code, just return regular code element
-    if (!className) {
-      return <code {...props}>{children}</code>;
-    }
-    // For code blocks, this will be handled by the pre component above
-    return (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  },
 };
 
 export async function generateStaticParams() {

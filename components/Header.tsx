@@ -1,32 +1,53 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+
+  const linkBaseStyle = "py-2 px-4 transition-all duration-300 rounded-lg";
+  const linkHoverStyle =
+    "hover:border hover:border-[#066cfb] hover:text-[#066cfb]";
+  const activeStyle = "border border-[#066cfb] text-[#066cfb]";
+
+  const links = [
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/logs", label: "Logs" },
+    { href: "/contact", label: "Contact" },
+  ];
+
   return (
-    <header>
+    <header className="w-full flex flex-col md:flex-row justify-between items-center mb-2 md:mb-0">
       <Link href="/">
         <Image
           src="/main-logo.png"
           width={250}
           height={50}
           alt="bitsofismael main logo"
+          className="p-0"
         />
       </Link>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <Link href="/projects">Projects</Link>
-          </li>
-          <li>
-            <Link href="/logs">Logs</Link>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
-        </ul>
+      <nav className="flex gap-5">
+        {links.map(({ href, label }) => {
+          const isActive = pathname === href || pathname.startsWith(`${href}/`);
+
+          return (
+            <Link
+              key={href}
+              href={href}
+              className={`${linkBaseStyle} ${linkHoverStyle} ${
+                isActive
+                  ? activeStyle
+                  : "border border-transparent text-gray-300"
+              }`}
+            >
+              {label}
+            </Link>
+          );
+        })}
       </nav>
     </header>
   );

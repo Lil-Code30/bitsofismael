@@ -1,8 +1,8 @@
 import { BlogCard } from "@/components/BlogCard";
 import { getAllLogs } from "@/lib/getAllLogs";
 
-export default async function Logs() {
-  const logs = await getAllLogs();
+export default function Logs() {
+  const logs = getAllLogs();
 
   return (
     <div className="max-w-4xl mx-auto p-6">

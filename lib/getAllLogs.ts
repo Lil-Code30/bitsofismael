@@ -1,40 +1,58 @@
 import fs from "fs";
 import path from "path";
+import matter from "gray-matter";
 
 const logsDirectory = path.join(process.cwd(), "content", "logs");
 
-export async function getAllLogs() {
+type LogItem = {
+  id: string;
+  slug: string;
+  title: string;
+  date: string | null;
+  description: string;
+  updatedDate: string | null;
+};
+
+export function getAllLogs(): LogItem[] {
   if (!fs.existsSync(logsDirectory)) return [];
 
   const dirs = fs
     .readdirSync(logsDirectory, { withFileTypes: true })
     .filter((d) => d.isDirectory());
 
-  const items = await Promise.all(
-    dirs.map(async (dir) => {
-      const slug = dir.name;
-      try {
-        // Import the MDX file to get metadata
-        const mod = await import(`@/content/logs/${slug}/${slug}.mdx`).catch(
-          () => import(`@/content/logs/${slug}/index.mdx`)
-        );
+  const items: LogItem[] = [];
 
-        const metadata = mod.metadata || {};
-        return {
+  for (const dir of dirs) {
+    const slug = dir.name;
+    try {
+      // Try to find MDX file
+      const mdxPath1 = path.join(logsDirectory, slug, `${slug}.mdx`);
+      const mdxPath2 = path.join(logsDirectory, slug, "index.mdx");
+
+      let filePath: string | null = null;
+      if (fs.existsSync(mdxPath1)) {
+        filePath = mdxPath1;
+      } else if (fs.existsSync(mdxPath2)) {
+        filePath = mdxPath2;
+      }
+
+      if (filePath) {
+        const fileContent = fs.readFileSync(filePath, "utf8");
+        const { data } = matter(fileContent);
+
+        items.push({
           id: slug,
           slug,
-          title: metadata.title ?? slug,
-          date: metadata.date ?? null,
-          description: metadata.description ?? "",
-          updatedDate: metadata.updatedDate ?? null,
-        };
-      } catch {
-        return null;
+          title: data.title ?? slug,
+          date: data.date ?? null,
+          description: data.description ?? "",
+          updatedDate: data.updatedDate ?? null,
+        });
       }
-    })
-  );
+    } catch (error) {
+      console.error(`Error processing log ${slug}:`, error);
+    }
+  }
 
-  return items
-    .filter(Boolean)
-    .sort((a, b) => (b!.date ?? "").localeCompare(a!.date ?? ""));
+  return items.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""));
 }

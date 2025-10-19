@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import CodeBlock from "./components/CodeBlock";
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -14,6 +15,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       );
     },
     img: (props) => <img {...props} loading="lazy" decoding="async" />,
+    pre: ({ children, ...props }) => {
+      // Extract the code element and its props
+      const codeElement = children as any;
+      if (codeElement?.type === "code") {
+        return (
+          <CodeBlock className={codeElement.props.className}>
+            {codeElement.props.children}
+          </CodeBlock>
+        );
+      }
+      return <pre {...props}>{children}</pre>;
+    },
     ...components,
   };
 }

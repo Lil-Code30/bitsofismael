@@ -1,7 +1,9 @@
 export default function Home() {
   return (
     <>
-      <h1 className="text-2xl font-bold">Welcome BitsOfIsmael!</h1>
+      <h1 className="text-2xl font-bold">
+        Welcome to <span className="text-[#066cfb]">BitsOfIsmael</span>
+      </h1>
     </>
   );
 }

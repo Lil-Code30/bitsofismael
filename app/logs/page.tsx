@@ -3,6 +3,7 @@ import { getAllLogs } from "@/lib/getAllLogs";
 
 export default function Logs() {
   const logs = getAllLogs();
+  const date = new Date();
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -14,7 +15,7 @@ export default function Logs() {
             key={log.id}
             id={log.id}
             title={log.title}
-            createdDate={log.date || "2023-10-01T12:00:00Z"}
+            createdDate={log.date || date.toISOString()}
             updatedDate={log.updatedDate || undefined}
           />
         ))}

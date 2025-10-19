@@ -1,3 +1,11 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Loko Ismaël | Full Stack Developer",
+  description:
+    "Hi, I'm Loko Ismaël — a passionate Full Stack Developer sharing my coding journey, projects, and learning experiences in web development.",
+};
+
 export default function Home() {
   return (
     <>

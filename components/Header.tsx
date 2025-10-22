@@ -7,7 +7,8 @@ import { usePathname } from "next/navigation";
 const Header = () => {
   const pathname = usePathname();
 
-  const linkBaseStyle = "py-2 px-4 transition-all duration-300 rounded-lg";
+  const linkBaseStyle =
+    "py-2 px-4 font-semibold transition-all duration-300 rounded-lg";
   const linkHoverStyle =
     "hover:border hover:border-[#066cfb] hover:text-[#066cfb]";
   const activeStyle = "border border-[#066cfb] text-[#066cfb]";

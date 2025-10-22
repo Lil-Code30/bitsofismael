@@ -35,7 +35,7 @@ export default async function LogsPage() {
       return {
         id: folder,
         title: data.title || `Log ${folder}`,
-        createdDate: data.createdDate || new Date().toISOString(),
+        createdDate: data.date || new Date().toISOString(),
         updatedDate: data.updatedDate || null,
         tag: data.tag || "DevLog",
         description: data.description || "A brief log entry.",
@@ -49,9 +49,9 @@ export default async function LogsPage() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-white mb-8">All Logs</h1>
+      <h1 className="text-3xl font-bold text-white mb-3">All Logs</h1>
 
-      <div className="grid gap-6 ">
+      <div className="grid gap-1 ">
         {logs.map((log) => (
           <BlogCard
             key={log.id}

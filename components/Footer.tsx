@@ -2,12 +2,12 @@ import { ArrowUpRight } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col md:flex-row items-center justify-between py-6 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500">
+    <footer className="flex flex-col md:flex-row items-center justify-between mt-6 py-3 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500">
       <p className="text-lg">
         &copy; 2025 - {new Date().getFullYear()} - MIT Licensed
       </p>
       <ul className="flex items-center gap-3">
-        <li>
+        {/* <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
             rel="noopener noreferrer"
@@ -17,7 +17,7 @@ const Footer = () => {
             <ArrowUpRight size={20} />
             <p className="text-lg">rss</p>
           </a>
-        </li>
+        </li> */}
         <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
@@ -26,7 +26,7 @@ const Footer = () => {
             href="https://github.com/Lil-Code30"
           >
             <ArrowUpRight size={20} />
-            <p className="text-lg">github</p>
+            <span className="text-lg">github</span>
           </a>
         </li>
         <li>
@@ -37,7 +37,7 @@ const Footer = () => {
             href="https://github.com/Lil-Code30/bitsofismael"
           >
             <ArrowUpRight size={20} />
-            <p className="text-lg">view source</p>
+            <span className="text-lg">view source</span>
           </a>
         </li>
       </ul>

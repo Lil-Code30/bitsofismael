@@ -21,7 +21,7 @@ export function BlogCard({ id, title, createdDate }: BlogCardProps) {
   return (
     <Link href={`/logs/${id}`} className="block group">
       <article className="flex items-center gap-5">
-        <div className="flex items-center gap-3 mb-2 font-bold">
+        <div className="flex items-center gap-3 font-bold">
           <div className="text-md text-gray-500 font-mono">#{id}</div>
           <time
             dateTime={createdDate}
@@ -30,7 +30,7 @@ export function BlogCard({ id, title, createdDate }: BlogCardProps) {
             {formatDate(createdDate)}
           </time>
         </div>
-        <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors mb-2">
+        <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">
           {title}
         </h3>
       </article>

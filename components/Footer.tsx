@@ -6,7 +6,7 @@ const Footer = () => {
       <p className="text-lg">
         &copy; 2025 - {new Date().getFullYear()} - MIT Licensed
       </p>
-      <ul className="flex items-center gap-3">
+      <div className="flex items-center gap-3">
         {/* <li>
           <a
             className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
@@ -18,29 +18,27 @@ const Footer = () => {
             <p className="text-lg">rss</p>
           </a>
         </li> */}
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/Lil-Code30"
-          >
-            <ArrowUpRight size={20} />
-            <span className="text-lg">github</span>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/Lil-Code30/bitsofismael"
-          >
-            <ArrowUpRight size={20} />
-            <span className="text-lg">view source</span>
-          </a>
-        </li>
-      </ul>
+
+        <a
+          className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://github.com/Lil-Code30"
+        >
+          <ArrowUpRight size={20} />
+          <span className="text-lg">github</span>
+        </a>
+
+        <a
+          className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://github.com/Lil-Code30/bitsofismael"
+        >
+          <ArrowUpRight size={20} />
+          <span className="text-lg">view source</span>
+        </a>
+      </div>
     </footer>
   );
 };

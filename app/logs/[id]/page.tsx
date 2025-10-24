@@ -46,7 +46,9 @@ export default async function LogPage({
 
   return (
     <article className="prose max-w-none">
-      <h1 className="text-3xl font-bold mb-6">{data.title ?? slug}</h1>
+      <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
+        {data.title ?? slug}
+      </h1>
       <div className="flex items-center gap-6 md:gap-10">
         <span className="text-sm text-gray-400 flex items-center gap-2">
           <CalendarPlus size={15} /> {data.date.split("T")[0]}

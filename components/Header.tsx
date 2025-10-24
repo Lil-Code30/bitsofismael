@@ -8,7 +8,7 @@ const Header = () => {
   const pathname = usePathname();
 
   const linkBaseStyle =
-    "py-2 px-4 font-semibold transition-all duration-300 rounded-lg";
+    "py-2 px-4 font-semibold transition-all duration-300 rounded-lg w-full text-center";
   const linkHoverStyle =
     "hover:border hover:border-[#066cfb] hover:text-[#066cfb]";
   const activeStyle = "border border-[#066cfb] text-[#066cfb]";
@@ -21,17 +21,17 @@ const Header = () => {
   ];
 
   return (
-    <header className="w-full flex flex-col md:flex-row justify-between items-center mb-2 md:mb-0">
+    <header className="w-full flex flex-col md:flex-row justify-between mb-2 md:mb-0">
       <Link href="/">
         <Image
           src="/main-logo.png"
           width={250}
           height={50}
           alt="bitsofismael main logo"
-          className="p-0"
+          className="p-0 align-center"
         />
       </Link>
-      <nav className="flex gap-5">
+      <nav className="flex gap-5 items-center flex-col md:flex-row">
         {links.map(({ href, label }) => {
           const isActive = pathname === href || pathname.startsWith(`${href}/`);
 

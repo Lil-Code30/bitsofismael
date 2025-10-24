@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Twitch, Youtube, Github, Linkedin, Twitter, Mail } from "lucide-react";
-import { Metadata } from "next";
+import { Twitch, Youtube, Github, Linkedin, Twitter } from "lucide-react";
+import SocialLinkCard from "@/components/SocialLinkCard";
 
 // export const metadata: Metadata = {
 //   title: "Contact — Loko Ismaël",
@@ -56,15 +56,44 @@ function Contact() {
 
   const socialLinks = [
     {
-      href: "",
-      icon: <Twitch />,
-      alt: "Twitch",
+      id: 1,
+      href: "https://www.twitch.tv/dereal_ismael",
+      icon: <Twitch size={35} className="hover:text-[#6441a5]" />,
+      text: "Twitch",
+    },
+    {
+      id: 2,
+      href: "https://www.youtube.com/@licode30",
+      icon: <Youtube size={35} className="hover:text-[#FF0000]" />,
+      text: "Youtube",
+    },
+    {
+      id: 3,
+      href: "https://github.com/Lil-Code30",
+      icon: <Github size={35} className="hover:text-[#6e7781]" />,
+      text: "Github",
+    },
+    {
+      id: 4,
+      href: "https://www.linkedin.com/in/loko-ismael/",
+      icon: <Linkedin size={35} className="hover:text-[#0a66c2]" />,
+      text: "Linkedin",
+    },
+    {
+      id: 5,
+      href: "https://x.com/dereal_ismael",
+      icon: <Twitter size={35} className="hover:text-[#1DA1F2]" />,
+      text: "Twitter",
     },
   ];
   return (
     <>
-      <section className="flex items-center justify-between flex-col md:flex-row mt-3">
-        <article className="w-full"></article>
+      <section className="flex items-center justify-between flex-col-reverse md:flex-row mt-3">
+        <article className="w-full flex gap-5 items-center justify-center py-5 mt-5 md:mt-0 md:py-0">
+          {socialLinks.map((socialLink) => (
+            <SocialLinkCard key={socialLink.id} socialLink={socialLink} />
+          ))}
+        </article>
         <article className="w-full">
           <h3 className="mb- text-center">Get In Touch with me</h3>
           <form onSubmit={handleSubmit} className="space-y-4">
